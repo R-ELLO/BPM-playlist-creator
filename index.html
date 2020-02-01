@@ -10,7 +10,44 @@
         <link rel="shortcut icon" href="#">
     </head>
     <body>
-       
+        <a id="top"></a>
+        <div class="container">
+            <h1>Welcome to the Spotify BPM playlist creator</h1>
+            <h2>Find the music to you're own beat</h2>
+
+            <form id="js-form">
+                <label for="search-term">Enter Artist or Genera</label>
+                <input type="text" name="search-term" id="search-term" required>
+
+                <label for="search-bpm">Enter BPM</label>
+                <input type="number" name="search-bpm" id="search-bpm" required>
+
+                <label for="max-results">Maximum results to return</label>
+                <input type="number" name="max-results" id="max-results" value="10">
+
+                <input type="submit" value="Go!">
+            </form>
+
+            <h4 class="errorMsg-js"></h4>
+            <section id="results" class="hidden">
+                <h2>Song Results</h2>
+                <ul id="results-list"></ul>
+            </section>
+
+            <section id="playlists">
+                <h2>Playlists</h2>
+                <label for="playlist-name">Title</label>
+                <input type="text" name="playlist-name" id="create-name" placeholder="Ex: Focus songs" required>
+                <input type="submit" value="Create">
+                <div class="playlist-name"></div>
+                <div class="playlist-songs"></div>
+            </section>
+        
+        </div>
+
+        <div class="scroll">
+            <a href="#top">Top of page</a>
+        </div>
         <script src="index.js"></script>
         <script
         src="https://code.jquery.com/jquery-3.4.1.js"

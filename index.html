@@ -7,6 +7,8 @@
         <meta name="description" content="Aplication to search Spotify's API for songs by a desired BPM">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="main.css">
+        <link href="https://fonts.googleapis.com/css?family=Eczar&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Gentium+Basic&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="#">
     </head>
     <body>
@@ -17,10 +19,10 @@
 
             <form id="js-form">
                 <label for="search-term">Enter Artist or Genera</label>
-                <input type="text" name="search-term" id="search-term" required>
+                <input type="text" name="search-term" id="search-term" placeholder="Ex: Lizzo" required>
 
                 <label for="search-bpm">Enter BPM</label>
-                <input type="number" name="search-bpm" id="search-bpm" required>
+                <input type="number" name="search-bpm" id="search-bpm" placeholder="145" required>
 
                 <label for="max-results">Maximum results to return</label>
                 <input type="number" name="max-results" id="max-results" value="10">
@@ -42,7 +44,6 @@
                 <div class="playlist-name"></div>
                 <div class="playlist-songs"></div>
             </section>
-        
         </div>
 
         <div class="scroll">

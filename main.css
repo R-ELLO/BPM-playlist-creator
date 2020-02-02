@@ -1,5 +1,72 @@
 /*Utilities*/
 
-*{
+:root {
+    background-image: linear-gradient(to bottom,  rgba(245, 241, 241, 0.301),
+    rgba(245, 241, 241, 0.301)), url(images/color-background.jpg);
+}
+
+* {
     box-sizing: border-box;
 }
+
+body {
+    font-family: 'Gentium Basic', serif;
+    font-size: 18px;
+    text-align: center;
+    margin: 0;
+}
+
+.container {
+    padding-left: 8%;
+    padding-right: 8%;
+    font-weight: 600;
+}
+
+h1, h2, h4 {
+    font-family: 'Eczar', serif;
+}
+
+label {
+    display: block;
+}
+
+input {
+    border-radius: 4px;
+}
+
+#search-bpm, #max-results {
+    max-width: 55px;
+}
+
+/*Bottom of page scroll*/
+
+.scroll{
+    width: 120px;
+    background-color: rgba(183, 221, 206, 0.651);
+    border-radius: 4px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scroll a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+}
+
+.scroll a:hover{
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.scroll a:focus{
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+/*Large screens*/
+
+@media screen and (min-width: 720px){}

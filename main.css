@@ -38,9 +38,21 @@ input {
     max-width: 55px;
 }
 
+/* Button effects*/
+
+.buttons:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 salmon;
+}
+
+.buttons:focus {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 salmon;
+}
+
 /*Bottom of page scroll*/
 
-.scroll{
+.scroll {
     width: 120px;
     background-color: rgba(183, 221, 206, 0.651);
     border-radius: 4px;
@@ -50,23 +62,31 @@ input {
     margin-right: auto;
 }
 
-.scroll a{
+.scroll a {
     text-decoration: none;
     color: black;
     text-align: center;
     font-weight: 600;
 }
 
-.scroll a:hover{
+.scroll a:hover {
     text-decoration: underline;
     font-size: 20px;
 }
 
-.scroll a:focus{
+.scroll a:focus {
     text-decoration: underline;
     font-size: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+#playlists {
+    margin-top: 5%;
 }
 
 /*Large screens*/
 
-@media screen and (min-width: 720px){}
+@media screen and (min-width: 720px) {}

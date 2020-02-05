@@ -1,7 +1,16 @@
 'use strics';
 
 const apiKey = ''; //Enter API key here
-const searchURL = '';
+//recomendations based on tempo (BPM), genre, & artist
+const searchURL = 'https://api.spotify.com/v1/recommendations';
+// Playlist endpoint section
+//create playlist - POST (user id = username)
+const makeListURL = 'https://api.spotify.com/v1/users/{user_id}/playlists';
+//add tracks to playlist - POST
+const = addSongURL = 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks';
+//remove tracks from playlist - DELETE
+const = rmSongURL = 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks';
+
 
 
 function formatQueryParams(params) {
@@ -10,19 +19,19 @@ function formatQueryParams(params) {
   return queryItems.join('&');
 }
 
-/* update this function*/
+/* not sure about this function*/
 
 function displayResults(responseJson) {
     console.log(responseJson);
     $('#results-list').empty();
     $('#results').show();
     $('.errorMsg-js').empty();
-    for (let i = 0; i < responseJson.items.length; i++) {
+    for (let i = 0; i < responseJson.tracks.length; i++) {
       $('#results-list').append(
-        `<li><h4>${responseJson.items[i].name}</h4>
-          <a href="${responseJson.data[i].url}" target="_blank" rel="noreferrer noopener">${responseJson.data[i].url}</a>
-          <p>Description: ${responseJson.data[i].description}</p>
-          <p>Directions: ${responseJson.data[i].directionsInfo}</p>
+        `<li><h4>Artist: ${responseJson.artists[i].name}</h4>
+          <a href="${responseJson.artists[i].uri}" target="_blank" rel="noreferrer noopener">${responseJson.artists[i].uri}</a>
+          <p>Track: ${responseJson.tracks[i].name}</p>
+          <a href="${responseJson.tracks[i].uri}" target="_blank" rel="noreferrer noopener">${responseJson.tracks[i].uri}</a>
        </li>`
       )};
       if (responseJson.data.length === 0){
@@ -31,14 +40,12 @@ function displayResults(responseJson) {
     };
 }
 
-//update this function
-
 function getMeSongs(query, bpm, maxResults=10) {
     console.log('getMeSongs initiated')
     const params = {
-      stateCode: query, //change this part
-      /*something:*/ bpm,
-      limit: maxResults // change this part
+      'seed_genre': query,
+      'target_tempo': bpm,
+      limit: maxResults
     };
   
     const queryString = queryParameters(params);

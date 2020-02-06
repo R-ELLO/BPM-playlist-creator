@@ -1,25 +1,51 @@
 'use strics';
 
-const apiKey = ''; //Enter API key here
+//const apiKey = ''; //Enter API key here
 //recomendations based on tempo (BPM), genre, & artist
 const searchURL = 'https://api.spotify.com/v1/recommendations';
 // Playlist endpoint section
 //create playlist - POST (user id = username)
-const makeListURL = 'https://api.spotify.com/v1/users/{user_id}/playlists';
+//const makeListURL = 'https://api.spotify.com/v1/users/{user_id}/playlists';
 //add tracks to playlist - POST
-const = addSongURL = 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks';
+//const = addSongURL = 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks';
 //remove tracks from playlist - DELETE
-const = rmSongURL = 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks';
+//const = rmSongURL = 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks';
 
+async function postAuth(url ='https://accounts.spotify.com/api/token', data = {
+    'grant_type': 'client_credentials'}) {
+    const response = await fetch(url, {
+        method: 'POST',
+        //mode: 'cors',
+        cache: 'default',
+        credentials: 'omit',
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+            Authorization: "Basic base64('client_id:client_secret')"
+        },
+        redirect: 'follow',
+        //referrerPolicy: 'client',
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        //throw new Error(response.statusText);
+      })
+      .then(responseJson => displayResults(responseJson))
+      .catch(error => {
+        console.log(error);
+        $('.errorMsg-js').text(`Oops! Something went wrong: ${error.message}. Try again.`)
+    });
+}
 
-
-function formatQueryParams(params) {
+function queryParameters(params) {
   const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
   return queryItems.join('&');
 }
 
-/* not sure about this function*/
+/* not sure about this function - check after authentication fixed and able to access*/
 
 function displayResults(responseJson) {
     console.log(responseJson);
@@ -43,13 +69,14 @@ function displayResults(responseJson) {
 function getMeSongs(query, bpm, maxResults=10) {
     console.log('getMeSongs initiated')
     const params = {
-      'seed_genre': query,
-      'target_tempo': bpm,
-      limit: maxResults
+        'seed_artist': query,  //not sure if will work...?
+        'seed_genre': query,
+        'target_tempo': bpm,
+        limit: maxResults
     };
   
     const queryString = queryParameters(params);
-    const url = searchUrl + '?' + queryString;
+    const url = searchURL + '?' + queryString;
     console.log(url);
   
     fetch(url)
@@ -67,6 +94,7 @@ function getMeSongs(query, bpm, maxResults=10) {
 }
   
 function watchForm() {
+    console.log('watchForm is working.');
     $('form').submit(event => {
       event.preventDefault();
       const searchTerm = $('#search-term').val();
@@ -76,8 +104,9 @@ function watchForm() {
     });
 }
   
-$(function() {
+$(function(){
     console.log('App loaded! Waiting for submit!');
+    postAuth();
     watchForm()
 });
   

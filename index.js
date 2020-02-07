@@ -11,8 +11,7 @@ const searchURL = 'https://api.spotify.com/v1/recommendations';
 //remove tracks from playlist - DELETE
 //const = rmSongURL = 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks';
 
-async function postAuth(url ='https://accounts.spotify.com/api/token', data = {
-    'grant_type': 'client_credentials'}) {
+async function postAuth(url ='https://accounts.spotify.com/api/token', data = {}) {
     const response = await fetch(url, {
         method: 'POST',
         //mode: 'cors',
@@ -20,6 +19,7 @@ async function postAuth(url ='https://accounts.spotify.com/api/token', data = {
         credentials: 'omit',
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
+            'grant_type': 'client_credentials',
             Authorization: "Basic base64('client_id:client_secret')"
         },
         redirect: 'follow',
@@ -32,7 +32,8 @@ async function postAuth(url ='https://accounts.spotify.com/api/token', data = {
         }
         //throw new Error(response.statusText);
       })
-      .then(responseJson => displayResults(responseJson))
+      .then(responseJson => fetch(/*to get data*/)
+        .then(/*do stuff with data response*/))
       .catch(error => {
         console.log(error);
         $('.errorMsg-js').text(`Oops! Something went wrong: ${error.message}. Try again.`)
